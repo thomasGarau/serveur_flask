@@ -11,11 +11,12 @@ app = Flask(__name__)
 # Retrieve the API key from the environment variables
 api_key = os.getenv('API_KEY')
 
-# Import routes after Flask app is created to avoid circular imports
 from routes.ia_routes import ia_routes
+from routes.mistral_routes import mistral_routes
 
-# Register the blueprint for IA routes
+
 app.register_blueprint(ia_routes, url_prefix='/ia')
+app.register_blueprint(mistral_routes)
 
 if __name__ == '__main__':
     app.run(debug=True)
